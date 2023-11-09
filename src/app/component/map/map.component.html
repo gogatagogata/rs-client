@@ -1,0 +1,6 @@
+<div id="map" class="map" (click)="logCoordinates(coordinate);" #coordinate></div>
+<select id="layers"  (change)="selectionChange(selectField.value);" #selectField>
+  <option value="OPENMAPS">Open Maps</option>
+  <option value="NAIP">NAIP</option>
+  <option value="LANDSAT">LANDSAT</option>
+</select>
