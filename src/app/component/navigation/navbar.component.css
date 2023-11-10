@@ -1,0 +1,16 @@
+header {
+  display: flex;
+}
+
+header div {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+header div:hover {
+  background-color: whitesmoke;
+}
+
+.active {
+  font-weight: bold;
+}

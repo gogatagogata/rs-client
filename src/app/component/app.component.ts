@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import TileLayer from "ol/layer/Tile";
-import View from "ol/View";
-import Map from "ol/Map";
-import OSM from "ol/source/OSM";
-import LayerGroup from "ol/layer/Group";
-import BingMaps from "ol/source/BingMaps";
-import TileArcGISRest from "ol/source/TileArcGISRest";
-import {FormControl} from "@angular/forms";
+import TileLayer from 'ol/layer/Tile';
+import View from 'ol/View';
+import Map from 'ol/Map';
+import OSM from 'ol/source/OSM';
+import TileArcGISRest from 'ol/source/TileArcGISRest';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -14,24 +12,22 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-
   osmSource = new OSM();
   naipSource = new TileArcGISRest({
-    url: "https://naip.imagery1.arcgis.com/arcgis/rest/services/NAIP/ImageServer",
+    url: 'https://naip.imagery1.arcgis.com/arcgis/rest/services/NAIP/ImageServer',
   });
   landsatSource = new TileArcGISRest({
-    url: "https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer",
+    url: 'https://landsat2.arcgis.com/arcgis/rest/services/Landsat/MS/ImageServer',
   });
   layer = new TileLayer();
   map: Map = new Map();
 
   disableSelect = new FormControl(false);
   ngOnInit(): void {
-
     this.map = new Map({
       view: new View({
         center: [0, 0],
-        zoom: 0
+        zoom: 0,
       }),
       layers: [
         new TileLayer({
@@ -43,20 +39,18 @@ export class AppComponent implements OnInit {
         }),
         this.layer,
       ],
-      target: "map",
+      target: 'map',
     });
-
-
   }
 
   selectionChange(selectedLayer: any) {
-    if (selectedLayer === "NAIP") {
+    if (selectedLayer === 'NAIP') {
       this.layer.setSource(this.naipSource);
     }
-    if (selectedLayer === "LANDSAT") {
+    if (selectedLayer === 'LANDSAT') {
       this.layer.setSource(this.landsatSource);
     }
-    if (selectedLayer === "OPENMAPS") {
+    if (selectedLayer === 'OPENMAPS') {
       this.layer.setSource(this.osmSource);
     }
   }
@@ -64,5 +58,4 @@ export class AppComponent implements OnInit {
   logCoordinates(coordinate: any) {
     console.log(coordinate);
   }
-
 }

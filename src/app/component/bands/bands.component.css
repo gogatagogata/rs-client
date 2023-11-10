@@ -1,0 +1,13 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.control-group {
+  display: flex;
+  padding: 1rem;
+}
+.control-group label {
+  min-width: 120px;
+}
