@@ -8,6 +8,7 @@ import { NavbarComponent } from './component/navigation/navbar.component';
 import { MapComponent } from './component/map/map.component';
 import { BandsComponent } from './component/bands/bands.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TimeComponent } from './component/time/time.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     MapComponent,
     BandsComponent,
+    TimeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
