@@ -1,5 +1,5 @@
 # RsClient
-A simple playground application that is still in progress. For now it consist of two components. The first one is a simple map and a dropdown that can change the source of the layers (from ArcGis Map/Image servers/ landsat / geotiff data from the file system etc.). The second one loads a tif from the file system on top of an open street map base layer and has some settings for changing the visible bands information from the geotiff file.  
+A simple playground application that is still in progress. For now it consist of two components. The first one is a simple map and a dropdown that can change the source of the layers (from ArcGis Map/Image servers/ landsat / geotiff data from the file system etc.). The second one loads a tif from the file system on top of an open street map base layer and has some settings for changing the visible bands information from the geotiff file. The small geotiff image of Vienna was downloaded through postman request with the help of https://shapps.dataspace.copernicus.eu/requests-builder/
 
 
 
