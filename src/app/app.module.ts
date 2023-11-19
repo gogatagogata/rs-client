@@ -10,6 +10,9 @@ import { BandsComponent } from './component/bands/bands.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TimeComponent } from './component/time/time.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { BandsApiComponent } from './component/bands-api/bands-api.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,8 +21,16 @@ import { TimeComponent } from './component/time/time.component';
     MapComponent,
     BandsComponent,
     TimeComponent,
+    BandsApiComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent],
 })
