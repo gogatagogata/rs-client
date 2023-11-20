@@ -11,6 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TimeComponent } from './component/time/time.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BandsApiComponent } from './component/bands-api/bands-api.component';
 
 @NgModule({
@@ -29,6 +33,10 @@ import { BandsApiComponent } from './component/bands-api/bands-api.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
