@@ -70,6 +70,16 @@ export class MapComponent implements OnInit {
     }
     if (selectedLayer === 'GeoTIFF') {
       this.layer.setSource(this.geoTiffSource.source);
+      this.layer.setStyle({
+        variables: { red: 1, green: 2, blue: 3 },
+        color: [
+          'array',
+          ['band', ['var', 'red']],
+          ['band', ['var', 'green']],
+          ['band', ['var', 'blue']],
+          1,
+        ],
+      });
     }
   }
 
