@@ -16,6 +16,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BandsApiComponent } from './component/bands-api/bands-api.component';
+import { BandsOdataComponent } from './component/bands-odata/bands-odata.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { BandsApiComponent } from './component/bands-api/bands-api.component';
     BandsComponent,
     TimeComponent,
     BandsApiComponent,
+    BandsOdataComponent,
   ],
   imports: [
     BrowserModule,

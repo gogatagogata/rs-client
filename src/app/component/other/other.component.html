@@ -1,1 +1,12 @@
-<div>Other component</div>
+<div id="map" class="map" (click)="logCoordinates($event)"></div>
+
+<div *ngIf="loading" class="loading">LOADING...</div>
+
+<div class="quicklook-wrapper">
+  <div *ngFor="let q of thumbnailsData">
+    <div (click)="onProductClick(q.downloadUrl)" class="quicklook-product">
+      <div>Product Id: {{ q.id }}</div>
+      <img [src]="q.thumbnail" />
+    </div>
+  </div>
+</div>

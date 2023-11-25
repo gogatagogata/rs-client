@@ -31,4 +31,16 @@ export class FileSystemGeotifService {
       extent: this.extentMap.get(fileName)!,
     };
   }
+  getJp2FromFileSystem(fileName: string): GeoTiffSourceAndExtent {
+    return {
+      source: new GeoTIFF({
+        sources: [
+          {
+            url: `../../../assets/data/${fileName}.jp2`,
+          },
+        ],
+      }),
+      extent: this.extentMap.get(fileName)!,
+    };
+  }
 }

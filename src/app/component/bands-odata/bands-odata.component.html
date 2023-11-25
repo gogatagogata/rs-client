@@ -1,0 +1,13 @@
+<div id="map" class="map" (click)="logCoordinates($event)"></div>
+
+<div *ngIf="loading" class="loading">LOADING...</div>
+
+<div class="quicklook-wrapper">
+  <div *ngFor="let q of quickLookProducts">
+    <div (click)="onProductClick(q.Id, q.Name)" class="quicklook-product">
+      <div>Product Id: {{ q.Id }}</div>
+      <div>Product Name: {{ q.Name }}</div>
+      <img [src]="q.Assets[0].DownloadLink" />
+    </div>
+  </div>
+</div>
