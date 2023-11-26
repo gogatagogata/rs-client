@@ -6,13 +6,14 @@ import GeoJSON from 'ol/format/GeoJSON';
 import VectorLayer from 'ol/layer/Vector';
 import TileLayer from 'ol/layer/WebGLTile.js';
 import {
-  GeoTIFF,
   Image,
   ImageStatic,
   ImageWMS,
   OSM,
+  Raster,
   TileImage,
   TileWMS,
+  XYZ,
 } from 'ol/source';
 import VectorSource from 'ol/source/Vector';
 import { GeotifService } from 'src/app/services/geotif.service';
@@ -44,8 +45,9 @@ import {
 } from 'src/app/services/odata.service';
 import { Observable, Tile } from 'ol';
 import Static from 'ol/source/ImageStatic';
-import XYZSource from 'ol/source/XYZ';
+// import XYZSource from 'ol/source/XYZ';
 import ImageLayer from 'ol/layer/Image';
+import GeoTIFF, { GeoTIFFImage, fromBlob } from 'geotiff';
 
 @Component({
   selector: 'app-bands-odata',
@@ -182,7 +184,6 @@ export class BandsOdataComponent implements OnInit, OnDestroy {
       .subscribe(async (res) => {
         var blob = new Blob([res], { type: 'image/jp2' });
         let imageUrl = URL.createObjectURL(blob);
-        console.log(imageUrl);
 
         let source = new ImageStatic({
           url: imageUrl,
@@ -190,6 +191,7 @@ export class BandsOdataComponent implements OnInit, OnDestroy {
           imageExtent: this.currentExtent,
         });
 
+        console.log(source.getImageExtent());
         this.jp2layer.setSource(source);
         console.log(this.jp2layer.getSource());
         this.loading = false;

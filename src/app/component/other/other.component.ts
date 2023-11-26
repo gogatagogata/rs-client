@@ -162,7 +162,7 @@ export class OtherComponent {
     });
     console.log(source);
     this.geoTiffLayer.setSource(source);
-    this.loading = false;
     this.geoTiffLayer.setExtent(this.currentExtent);
+    this.loading = false;
   }
 }

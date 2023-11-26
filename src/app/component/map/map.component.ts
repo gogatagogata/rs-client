@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import TileLayer from 'ol/layer/WebGLTile.js';
 import View from 'ol/View';
 import Map from 'ol/Map';

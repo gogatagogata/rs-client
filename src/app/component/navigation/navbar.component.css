@@ -1,11 +1,11 @@
 header {
   display: flex;
-  max-width: 1000px;
 }
 
-header div {
+.nav {
   padding: 1rem;
   cursor: pointer;
+  display: flex;
 }
 
 header div:hover {
@@ -14,4 +14,8 @@ header div:hover {
 
 .active {
   font-weight: bold;
+}
+.small-text {
+  font-size: small;
+  padding-left: 0.5rem;
 }

@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./time.component.css'],
 })
 export class TimeComponent {
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

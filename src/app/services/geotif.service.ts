@@ -36,4 +36,16 @@ export class GeotifService {
       { responseType: 'blob' }
     );
   }
+
+  getRandomGeoTiffStacBlobByExtent(extent: number[]): Observable<Blob> {
+    return this.http.post(
+      this.backendUrl + '/blob',
+      { extent: extent },
+      { responseType: 'blob' }
+    );
+  }
+
+  getGeoTiffStacApiJSON(extent: number[]): Observable<JSON> {
+    return this.http.post<JSON>(this.backendUrl + '/json', { extent: extent });
+  }
 }

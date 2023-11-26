@@ -17,6 +17,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BandsApiComponent } from './component/bands-api/bands-api.component';
 import { BandsOdataComponent } from './component/bands-odata/bands-odata.component';
+import { OlStacComponent } from './component/ol-stac/ol-stac.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { BandsOdataComponent } from './component/bands-odata/bands-odata.compone
     TimeComponent,
     BandsApiComponent,
     BandsOdataComponent,
+    OlStacComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import { BandsOdataComponent } from './component/bands-odata/bands-odata.compone
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

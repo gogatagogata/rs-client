@@ -1,3 +1,20 @@
+<div class="description">
+  The OData API From Copernicus ESA
+  <br />
+  <br />
+
+  OData (Open Data Protocol) is a standard that specifies a variety of best
+  practices for creating and using REST APIs. OData makes it possible to build
+  REST-based data services that let Web clients publish and edit resources that
+  are recognized by Uniform Resource Locators (URLs) and described in a data
+  model using straightforward HTTP messages.
+  <br />
+  <br />
+
+  The API returns only assets in jp2 format, which is supported only by Safari
+  browser for now. We could investigate this further and try to convert the jp2
+  files in geotiffs in the backend for example.
+</div>
 <div id="map" class="map" (click)="logCoordinates($event)"></div>
 
 <div *ngIf="loading" class="loading">LOADING...</div>

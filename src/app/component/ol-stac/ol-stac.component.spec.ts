@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BandsApiComponent } from './bands-api.component';
+import { OlStacComponent } from './ol-stac.component';
 
-describe('BandsApiComponent', () => {
-  let component: BandsApiComponent;
-  let fixture: ComponentFixture<BandsApiComponent>;
+describe('OlStacComponent', () => {
+  let component: OlStacComponent;
+  let fixture: ComponentFixture<OlStacComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BandsApiComponent],
+      declarations: [OlStacComponent]
     });
-    fixture = TestBed.createComponent(BandsApiComponent);
+    fixture = TestBed.createComponent(OlStacComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

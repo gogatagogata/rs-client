@@ -88,35 +88,38 @@ export class BandsApiComponent implements OnInit {
 
     this.loading = true;
 
-    this.geotifService.getRandomGeoTiffByExtent(extentEPSG4326).subscribe(
-      (blobResult: Blob) => {
-        const source = new GeoTIFF({
-          sources: [
-            {
-              blob: blobResult,
-            },
-          ],
-        });
-        console.log(source);
-        console.log(source.getProjection());
+    this.geotifService
+      .getRandomGeoTiffStacBlobByExtent(extentEPSG4326)
+      .subscribe(
+        (blobResult: Blob) => {
+          const source = new GeoTIFF({
+            sources: [
+              {
+                blob: blobResult,
+              },
+            ],
+          });
+          console.log(source);
+          console.log(source.getProjection());
 
-        source.getView().then((view) => {
-          const newLayerExtent = view.extent;
-          console.log(view.projection?.valueOf);
-          console.log(`New GeoTIFF Layer extent: ${newLayerExtent}`);
-          this.geoTiffLayer.setExtent(
-            transformExtent(newLayerExtent!, view!.projection, 'EPSG:3857')
-          );
-          this.geoTiffLayer.setSource(source);
+          source.getView().then((view) => {
+            const newLayerExtent = view.extent;
+            console.log(view.projection?.valueOf);
+            console.log(`New GeoTIFF Layer extent: ${newLayerExtent}`);
+            this.geoTiffLayer.setExtent(
+              transformExtent(newLayerExtent!, view!.projection, 'EPSG:3857')
+            );
+            this.geoTiffLayer.setSource(source);
+            this.geoTiffLayer.setExtent(extent);
+            this.loading = false;
+          });
+        },
+        (error) => {
+          console.log('Error!');
+          console.log(error);
           this.loading = false;
-        });
-      },
-      (error) => {
-        console.log('Error!');
-        console.log(error);
-        this.loading = false;
-      }
-    );
+        }
+      );
   }
   private initGeoTiff3BandsLayer() {
     this.geoTiffLayer = new TileLayer({
