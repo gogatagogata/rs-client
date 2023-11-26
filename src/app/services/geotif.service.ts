@@ -23,10 +23,24 @@ export class GeotifService {
     return this.http.get(url, { responseType: 'blob' });
   }
 
-  getSentinelGeoTiffByExtent(extent: number[]) {
+  getSentinelGeoTiff(
+    extent: number[],
+    dateFrom: string,
+    dateTo: string,
+    cloudCoverage: number
+  ) {
+    console.log('Getting sentinel tiff from processing api with ');
+    console.log(dateFrom);
+    console.log(dateTo);
+    console.log(cloudCoverage);
     return this.http.post(
       `${this.backendUrl}/sentinel`,
-      { extent: extent },
+      {
+        extent: extent,
+        dateFrom: dateFrom,
+        dateTo: dateTo,
+        cloudCoverage: cloudCoverage,
+      },
       { responseType: 'blob' }
     );
   }

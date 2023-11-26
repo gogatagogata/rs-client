@@ -1,0 +1,23 @@
+form {
+  width: 100%;
+}
+.control-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input-group {
+  font-size: small;
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-group label {
+  min-width: 0;
+  height: 20px;
+  display: flex;
+  margin-right: 1rem;
+}

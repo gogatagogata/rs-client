@@ -1,2 +1,22 @@
 <div id="map" class="map" (click)="logCoordinates($event)"></div>
 <div *ngIf="loading" class="loading">LOADING...</div>
+
+<div class="control-group">
+  <div class="input-group">
+    <label for="dateFrom">from</label>
+    <input type="date" [(ngModel)]="dateFrom" name="dateFrom" id="dateFrom" />
+  </div>
+  <div class="input-group">
+    <label for="dateTo">to</label>
+    <input type="date" [(ngModel)]="dateTo" name="dateTo" id="dateTo" />
+  </div>
+  <div class="input-group">
+    <label for="cloudCoverage">Cloud coverage</label>
+    <input
+      type="number"
+      [(ngModel)]="cloudCoverage"
+      name="cloudCoverage"
+      id="cloudCoverage"
+    />
+  </div>
+</div>

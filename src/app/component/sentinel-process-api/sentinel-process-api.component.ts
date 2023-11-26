@@ -20,6 +20,12 @@ import VectorSource from 'ol/source/Vector';
 import proj4 from 'proj4';
 import { GeotifService } from 'src/app/services/geotif.service';
 import Map from 'ol/Map';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-sentinel-process-api',
@@ -34,14 +40,14 @@ export class SentinelProcessApiComponent {
 
   currentExtent: Extent = [];
 
-  constructor(private geoTiffService: GeotifService) {}
+  dateFrom: Date = new Date();
+  dateTo: Date = new Date();
+  cloudCoverage: number = 22;
+
+  constructor(private geoTiffService: GeotifService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     register(proj4);
-    // this.stacLayer.on('change:layers', () => {
-    //   const view = this.map.getView();
-    //   view.fit(this.stacLayer.getExtent()!);
-    // });
 
     const vectorLayer = new VectorLayer({
       source: new VectorSource({ wrapX: false }),
@@ -80,6 +86,9 @@ export class SentinelProcessApiComponent {
   }
 
   onDrawEnd(e: DrawEvent): void {
+    console.log('!!!!');
+    console.log(this.dateFrom);
+
     const feature: Feature<Geometry> = e.feature;
 
     console.log(feature);
@@ -113,7 +122,12 @@ export class SentinelProcessApiComponent {
     this.loading = true;
 
     this.geoTiffService
-      .getSentinelGeoTiffByExtent(extentEPSG4326)
+      .getSentinelGeoTiff(
+        extentEPSG4326,
+        this.dateFrom.toString(),
+        this.dateTo.toString(),
+        this.cloudCoverage
+      )
       .subscribe((r) => {
         let geoTiffRGBSource = new GeoTIFF({
           sources: [
@@ -141,4 +155,5 @@ export class SentinelProcessApiComponent {
         this.loading = false;
       });
   }
+  onFormSubmit() {}
 }
