@@ -23,6 +23,14 @@ export class GeotifService {
     return this.http.get(url, { responseType: 'blob' });
   }
 
+  getSentinelGeoTiffByExtent(extent: number[]) {
+    return this.http.post(
+      `${this.backendUrl}/sentinel`,
+      { extent: extent },
+      { responseType: 'blob' }
+    );
+  }
+
   getGeoTiffAsset(extent: number[]): Observable<GeoTiffResponse> {
     return this.http.post<GeoTiffResponse>(this.backendUrl, {
       extent: extent,

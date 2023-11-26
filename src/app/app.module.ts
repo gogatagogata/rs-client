@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BandsApiComponent } from './component/bands-api/bands-api.component';
 import { BandsOdataComponent } from './component/bands-odata/bands-odata.component';
 import { OlStacComponent } from './component/ol-stac/ol-stac.component';
+import { SentinelProcessApiComponent } from './component/sentinel-process-api/sentinel-process-api.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { OlStacComponent } from './component/ol-stac/ol-stac.component';
     BandsApiComponent,
     BandsOdataComponent,
     OlStacComponent,
+    SentinelProcessApiComponent,
   ],
   imports: [
     BrowserModule,

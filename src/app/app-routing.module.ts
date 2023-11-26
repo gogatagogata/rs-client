@@ -8,6 +8,7 @@ import { TimeComponent } from './component/time/time.component';
 import { BandsApiComponent } from './component/bands-api/bands-api.component';
 import { BandsOdataComponent } from './component/bands-odata/bands-odata.component';
 import { OlStacComponent } from './component/ol-stac/ol-stac.component';
+import { SentinelProcessApiComponent } from './component/sentinel-process-api/sentinel-process-api.component';
 
 const routes: Routes = [
   { path: 'map-component', component: MapComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'ol-stac', component: OlStacComponent },
   { path: 'time', component: TimeComponent },
   { path: 'other', component: OtherComponent },
+  { path: 'sentinel', component: SentinelProcessApiComponent },
   { path: '', redirectTo: '/map-component', pathMatch: 'full' },
 ];
 
