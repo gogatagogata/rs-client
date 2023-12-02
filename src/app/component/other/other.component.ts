@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Map from 'ol/Map';
 import { GeoTIFF as GTSource, OSM } from 'ol/source';
-import { Extent, createEmpty, getCenter } from 'ol/extent';
-import { extend } from 'ol/array';
+import { Extent } from 'ol/extent';
 import { transformExtent } from 'ol/proj';
 import TileLayer from 'ol/layer/WebGLTile.js';
 import proj4 from 'proj4';
@@ -18,7 +17,6 @@ import VectorSource from 'ol/source/Vector';
 import { Feature, View } from 'ol';
 import { Geometry } from 'ol/geom';
 import Draw, { createBox, DrawEvent } from 'ol/interaction/Draw';
-import GeoTIFF, { GeoTIFFImage, fromBlob } from 'geotiff';
 
 @Component({
   selector: 'other-component',
@@ -34,7 +32,8 @@ export class OtherComponent {
   vectorLayer = new VectorLayer({
     source: new VectorSource({ wrapX: false }),
   });
-  constructor(private geotifService: GeotifService, private fb: FormBuilder) {}
+
+  constructor(private geotifService: GeotifService) {}
 
   ngOnInit(): void {
     proj4.defs(
@@ -66,10 +65,12 @@ export class OtherComponent {
         }),
         this.geoTiffLayer,
         this.vectorLayer,
-      ],
-      target: 'map',
+      ]
     });
     this.map.addInteraction(drawInteraction);
+    setTimeout(() => {
+      this.map.setTarget('map');
+    }, 0);
   }
   private createBBoxDrawInteraction(source: VectorSource) {
     const drawInteraction = new Draw({

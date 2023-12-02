@@ -63,9 +63,11 @@ export class BandsComponent {
           source: new OSM(),
         }),
         layer,
-      ],
-      target: 'map',
+      ]
     });
+    setTimeout(() => {
+      this.map.setTarget('map');
+    }, 0);
   }
 
   private createLayer(geoTiffSourceAndExtent: GeoTiffSourceAndExtent) {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import VectorLayer from 'ol/layer/Vector';
@@ -11,7 +11,6 @@ import Draw, { DrawEvent, createBox } from 'ol/interaction/Draw';
 import Feature from 'ol/Feature';
 import { Geometry } from 'ol/geom';
 import { transformExtent } from 'ol/proj';
-import { from, lastValueFrom } from 'rxjs';
 import proj4 from 'proj4';
 import { register } from 'ol/proj/proj4';
 
@@ -60,11 +59,14 @@ export class BandsApiComponent implements OnInit {
         }),
         this.geoTiffLayer,
         vectorLayer,
-      ],
-      target: 'map',
+      ]
     });
     this.map.addInteraction(drawInteraction);
+    setTimeout(() => {
+      this.map.setTarget('map');
+    }, 0);
   }
+
   private createBBoxDrawInteraction(source: VectorSource) {
     const drawInteraction = new Draw({
       source: source,
@@ -121,6 +123,7 @@ export class BandsApiComponent implements OnInit {
         }
       );
   }
+
   private initGeoTiff3BandsLayer() {
     this.geoTiffLayer = new TileLayer({
       style: {
@@ -135,6 +138,7 @@ export class BandsApiComponent implements OnInit {
       },
     });
   }
+
   logCoordinates(event: any) {
     console.log(this.map.getEventCoordinate(event));
   }

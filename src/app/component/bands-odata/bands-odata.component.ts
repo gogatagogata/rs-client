@@ -1,36 +1,22 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import GeoJSON from 'ol/format/GeoJSON';
 import VectorLayer from 'ol/layer/Vector';
 import TileLayer from 'ol/layer/WebGLTile.js';
 import {
-  Image,
   ImageStatic,
-  ImageWMS,
-  OSM,
-  Raster,
-  TileImage,
-  TileWMS,
-  XYZ,
 } from 'ol/source';
 import VectorSource from 'ol/source/Vector';
-import { GeotifService } from 'src/app/services/geotif.service';
 import Draw, {
   DrawEvent,
   createBox,
-  createRegularPolygon,
 } from 'ol/interaction/Draw';
 import Feature from 'ol/Feature';
 import { Geometry } from 'ol/geom';
 import { transformExtent } from 'ol/proj';
-import { firstValueFrom, from, lastValueFrom } from 'rxjs';
 import proj4 from 'proj4';
 import { register } from 'ol/proj/proj4';
-import { create } from 'ol/transform';
-import { transformGeom2D } from 'ol/geom/SimpleGeometry';
-import { transformGeometryWithOptions } from 'ol/format/Feature';
 import {
   Extent,
   getBottomLeft,
@@ -43,29 +29,22 @@ import {
   ODataQuickLookProduct,
   ODataService,
 } from 'src/app/services/odata.service';
-import { Observable, Tile } from 'ol';
-import Static from 'ol/source/ImageStatic';
-// import XYZSource from 'ol/source/XYZ';
 import ImageLayer from 'ol/layer/Image';
-import GeoTIFF, { GeoTIFFImage, fromBlob } from 'geotiff';
+import OSM from "ol/source/OSM";
 
 @Component({
   selector: 'app-bands-odata',
   templateUrl: './bands-odata.component.html',
   styleUrls: ['./bands-odata.component.css'],
 })
-export class BandsOdataComponent implements OnInit, OnDestroy {
+export class BandsOdataComponent implements OnInit {
   loading: boolean = false;
-  // geoTiffLayer: TileLayer = new TileLayer({});
   map: Map = new Map();
   quickLookProducts: ODataQuickLookProduct[] = [];
   jp2layer = new ImageLayer({});
   currentExtent: Extent = [];
 
-  constructor(private oDataService: ODataService, private fb: FormBuilder) {}
-  ngOnDestroy(): void {
-    this.map.dispose();
-  }
+  constructor(private oDataService: ODataService) {}
 
   ngOnInit(): void {
     proj4.defs(
@@ -79,14 +58,7 @@ export class BandsOdataComponent implements OnInit, OnDestroy {
     register(proj4);
     this.initMap();
   }
-  // Convert Blob to a data URL
-  blobToDataURL = function (blob: any, callback: any) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      callback(e.target!.result);
-    };
-    reader.readAsDataURL(blob);
-  };
+
   initMap() {
     const vectorLayer = new VectorLayer({
       source: new VectorSource({ wrapX: false }),
@@ -107,11 +79,14 @@ export class BandsOdataComponent implements OnInit, OnDestroy {
         // this.geoTiffLayer,
         this.jp2layer,
         vectorLayer,
-      ],
-      target: 'map',
+      ]
     });
     this.map.addInteraction(drawInteraction);
+    setTimeout(() => {
+      this.map.setTarget('map');
+    }, 0);
   }
+
   private createBBoxDrawInteraction(source: VectorSource) {
     const drawInteraction = new Draw({
       source: source,
@@ -173,6 +148,7 @@ export class BandsOdataComponent implements OnInit, OnDestroy {
   logCoordinates(event: any) {
     console.log(this.map.getEventCoordinate(event));
   }
+
   onProductClick(productId: string, productName: string) {
     console.log('ProductId');
     console.log(productId);
@@ -197,4 +173,5 @@ export class BandsOdataComponent implements OnInit, OnDestroy {
         this.loading = false;
       });
   }
+
 }

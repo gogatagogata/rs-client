@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Feature, View } from 'ol';
 import STAC, { Extent } from 'ol-stac';
 import TileLayer from 'ol/layer/WebGLTile.js';
@@ -25,7 +25,7 @@ import { transformExtent } from 'ol/proj';
   templateUrl: './ol-stac.component.html',
   styleUrls: ['./ol-stac.component.css'],
 })
-export class OlStacComponent {
+export class OlStacComponent implements OnInit {
   osmSource = new OSM();
 
   map: Map = new Map();
@@ -37,11 +37,6 @@ export class OlStacComponent {
 
   ngOnInit(): void {
     register(proj4);
-    // this.stacLayer.on('change:layers', () => {
-    //   const view = this.map.getView();
-    //   view.fit(this.stacLayer.getExtent()!);
-    // });
-
     const vectorLayer = new VectorLayer({
       source: new VectorSource({ wrapX: false }),
     });
@@ -60,10 +55,12 @@ export class OlStacComponent {
           source: this.osmSource,
         }),
         vectorLayer,
-      ],
-      target: 'map',
+      ]
     });
     this.map.addInteraction(drawInteraction);
+    setTimeout(() => {
+      this.map.setTarget('map');
+    }, 0);
   }
   private createBBoxDrawInteraction(source: VectorSource) {
     const drawInteraction = new Draw({

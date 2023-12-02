@@ -1,10 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import TileLayer from 'ol/layer/WebGLTile.js';
 import View from 'ol/View';
 import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
 import TileArcGISRest from 'ol/source/TileArcGISRest';
-import { GeoTIFF } from 'ol/source';
 import {
   FileSystemGeotifService,
   GeoTiffSourceAndExtent,
@@ -25,7 +24,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.geoTiffSource =
-      this.fileSystemGeoTifService.getGeoTiffFromFileSystem('vienna');
+    this.fileSystemGeoTifService.getGeoTiffFromFileSystem('vienna');
     this.map = new Map({
       view: new View({
         center: [0, 0],
@@ -38,8 +37,10 @@ export class MapComponent implements OnInit {
         }),
         this.layer,
       ],
-      target: 'map',
     });
+    setTimeout(() => {
+      this.map.setTarget('map');
+    }, 0);
   }
 
   onChangeLayer(selectedLayer: string) {

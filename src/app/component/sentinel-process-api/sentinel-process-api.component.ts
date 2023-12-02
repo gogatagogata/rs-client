@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { View, Feature } from 'ol';
 import { Extent } from 'ol-stac';
 import {
@@ -20,19 +20,14 @@ import VectorSource from 'ol/source/Vector';
 import proj4 from 'proj4';
 import { GeotifService } from 'src/app/services/geotif.service';
 import Map from 'ol/Map';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-sentinel-process-api',
   templateUrl: './sentinel-process-api.component.html',
   styleUrls: ['./sentinel-process-api.component.css'],
 })
-export class SentinelProcessApiComponent {
+export class SentinelProcessApiComponent implements OnInit {
   osmSource = new OSM();
 
   map: Map = new Map();
@@ -67,11 +62,14 @@ export class SentinelProcessApiComponent {
           source: this.osmSource,
         }),
         vectorLayer,
-      ],
-      target: 'map',
+      ]
     });
     this.map.addInteraction(drawInteraction);
+    setTimeout(() => {
+      this.map.setTarget('map');
+    }, 0);
   }
+
   private createBBoxDrawInteraction(source: VectorSource) {
     const drawInteraction = new Draw({
       source: source,
@@ -155,5 +153,5 @@ export class SentinelProcessApiComponent {
         this.loading = false;
       });
   }
-  onFormSubmit() {}
+
 }
